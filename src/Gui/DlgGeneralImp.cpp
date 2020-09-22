@@ -229,6 +229,9 @@ void DlgGeneralImp::loadSettings()
     ui->treeMode->addItem(tr("TreeView and PropertyView"));
     ui->treeMode->addItem(tr("Both"));
 
+    ui->titlebarMode->addItem(tr("Native"));
+    ui->titlebarMode->addItem(tr("Custom"));
+
     hGrp = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/DockWindows");
     bool propertyView = hGrp->GetGroup("PropertyView")->GetBool("Enabled",false);
     bool treeView = hGrp->GetGroup("TreeView")->GetBool("Enabled",false);
