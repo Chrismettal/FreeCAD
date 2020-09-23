@@ -202,7 +202,12 @@ public:
     //@{
     /// Activate a named workbench
     void setStyleSheet(const QString& qssFile, bool tiledBackground);
+    /// Set the toolbar to native or custom
+    void Application::setToolbar(bool custom);
     //@}
+
+
+
 
     /** @name User Commands */
     //@{

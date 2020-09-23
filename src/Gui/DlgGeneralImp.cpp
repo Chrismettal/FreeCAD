@@ -171,20 +171,10 @@ void DlgGeneralImp::saveSettings()
 
     switch(ui->titlebarMode->currentIndex()) {
     case 0:
-        Base::Console().Warning("Native Titlebar requested\n");
-        /*
-        Gui::MainWindow::hide();
-        Gui::MainWindow::setWindowFlags(windowFlags() & ~Qt::FramelessWindowHint);
-        Gui::MainWindow::show();
-        */
+        Application::Instance->setToolbar(false);
         break;
     case 1:
-        Base::Console().Warning("Custom Titlebar requested\n");
-        /*
-        Gui::MainWindow::hide();
-        Gui::MainWindow::setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
-        Gui::MainWindow::show();
-        */
+        Application::Instance->setToolbar(true);
         break;
     }
 

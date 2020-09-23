@@ -2320,6 +2320,23 @@ void Application::setStyleSheet(const QString& qssFile, bool tiledBackground)
         mdi->style()->unpolish(qApp);
 }
 
+
+void Application::setToolbar(bool custom)
+{
+    Gui::MainWindow* mw = getMainWindow();
+    Qt::WindowFlags flags = mw->windowFlags();
+
+    if (custom) then {
+        //Set to frameless window
+        mw->setWindowFlags(flags | Qt::FramelessWindowHint);  
+    } else {
+        //Set to native toolbar
+        mw->setWindowFlags(flags & ~Qt::FramelessWindowHint);  
+    }
+    mw->show();
+}
+
+
 void Application::checkForPreviousCrashes()
 {
     QDir tmp = QString::fromUtf8(App::Application::getTempPath().c_str());
