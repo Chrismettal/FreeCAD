@@ -1919,6 +1919,9 @@ void Application::runApplication(void)
     else {
         mainApp.setApplicationName(QString::fromUtf8(App::GetApplication().getExecutableName()));
     }
+    
+    //mainApp.setApplicationName(QString::fromUtf8("SendNudes"));
+
 #ifndef Q_OS_MACX
     mainApp.setWindowIcon(Gui::BitmapFactory().pixmap(App::Application::Config()["AppIcon"].c_str()));
 #endif
