@@ -166,6 +166,29 @@ void DlgGeneralImp::saveSettings()
     QVariant sheet = ui->StyleSheets->itemData(ui->StyleSheets->currentIndex());
     hGrp->SetASCII("StyleSheet", (const char*)sheet.toByteArray());
     Application::Instance->setStyleSheet(sheet.toString(), ui->tiledBackground->isChecked());
+
+    //My stuff
+
+    switch(ui->titlebarMode->currentIndex()) {
+    case 0:
+        Base::Console().Warning("Native Titlebar requested\n");
+        /*
+        Gui::MainWindow::hide();
+        Gui::MainWindow::setWindowFlags(windowFlags() & ~Qt::FramelessWindowHint);
+        Gui::MainWindow::show();
+        */
+        break;
+    case 1:
+        Base::Console().Warning("Custom Titlebar requested\n");
+        /*
+        Gui::MainWindow::hide();
+        Gui::MainWindow::setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
+        Gui::MainWindow::show();
+        */
+        break;
+    }
+
+
 }
 
 void DlgGeneralImp::loadSettings()
