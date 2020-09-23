@@ -2326,7 +2326,7 @@ void Application::setToolbar(bool custom)
     Gui::MainWindow* mw = getMainWindow();
     Qt::WindowFlags flags = mw->windowFlags();
 
-    if (custom) then {
+    if (custom) {
         //Set to frameless window
         mw->setWindowFlags(flags | Qt::FramelessWindowHint);  
     } else {
