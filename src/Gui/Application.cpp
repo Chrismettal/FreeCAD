@@ -2021,7 +2021,10 @@ void Application::runApplication(void)
     Application app(true);
     MainWindow mw;
     mw.setProperty("QuitOnClosed", true);
-
+    /* Hardcoded frameless window works
+    Qt::WindowFlags flags = mw.windowFlags();
+    mw.setWindowFlags(flags | Qt::FramelessWindowHint);
+    */
     // allow to disable version number
     ParameterGrp::handle hGen = App::GetApplication().GetParameterGroupByPath("User parameter:BaseApp/Preferences/General");
     bool showVersion = hGen->GetBool("ShowVersionInTitle",true);
