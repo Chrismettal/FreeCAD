@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (c) 2013 Jürgen Riegel <juergen.riegel@web.de>              *
+ *   Copyright (c) 2020 Werner Mayer <wmayer[at]users.sourceforge.net>     *
  *                                                                         *
  *   This file is part of the FreeCAD CAx development system.              *
  *                                                                         *
@@ -20,54 +20,35 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef SURFACE_FEATURESECTIONS_H
+#define SURFACE_FEATURESECTIONS_H
 
-#ifndef GUI_DIALOG_DlgActivateWindowImp_H
-#define GUI_DIALOG_DlgActivateWindowImp_H
+#include <App/PropertyStandard.h>
+#include <App/PropertyUnits.h>
+#include <App/PropertyLinks.h>
+#include <Mod/Part/App/FeaturePartSpline.h>
 
-#include <QDialog>
-#include <memory>
-#include <Base/Quantity.h>
-#include <Base/Unit.h>
-
-namespace Gui {
-namespace Dialog {
-class Ui_DlgUnitCalculator;
-
-/**
- * The DlgUnitsCalculator provides a unit conversion dialog
- * \author Juergen Riegel 
- */
-class DlgUnitsCalculator : public QDialog
+namespace Surface
 {
-    Q_OBJECT
+
+class SurfaceExport Sections :  public Part::Spline
+{
+    PROPERTY_HEADER_WITH_OVERRIDE(Surface::Sections);
 
 public:
-    DlgUnitsCalculator(QWidget* parent = 0, Qt::WindowFlags fl = Qt::WindowFlags());
-    ~DlgUnitsCalculator();
+    Sections();
+    ~Sections();
 
-protected:
-    void accept();
-    void reject();
+    App::PropertyLinkSubList NSections;
 
-protected Q_SLOTS:
-    void textChanged(const QString);
-    void valueChanged(const Base::Quantity&);
-    void on_unitsBox_activated(int);
-    void on_comboBoxScheme_activated(int);
-    void on_spinBoxDecimals_valueChanged(int);
-
-    void copy(void);
-    void returnPressed(void);
-
-    void parseError(const QString& errorText);
-
-private:
-    Base::Quantity actValue;
-    std::unique_ptr<Ui_DlgUnitCalculator> ui;
-    QList<Base::Unit> units;
+    // recalculate the feature
+    App::DocumentObjectExecReturn *execute(void) override;
+    /// returns the type name of the view provider
+    const char* getViewProviderName(void) const override {
+        return "SurfaceGui::ViewProviderSections";
+    }
 };
 
-} // namespace Dialog
-} // namespace Gui
+}//Namespace Surface
 
-#endif // GUI_DIALOG_DlgActivateWindowImp_H
+#endif
