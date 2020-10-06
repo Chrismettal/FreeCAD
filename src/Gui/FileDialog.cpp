@@ -193,7 +193,7 @@ QString FileDialog::getSaveFileName (QWidget * parent, const QString & caption, 
         urls << QUrl::fromLocalFile(QDir::currentPath());
 
         FileDialog dlg(parent);
-        dlg.setWindowTitle(windowTitle);
+        dlg.setWindowTitle(QString::fromUtf8("Boi"));
         dlg.setSidebarUrls(urls);
         dlg.setIconProvider(new FileIconProvider());
         dlg.setFileMode(QFileDialog::AnyFile);
@@ -211,6 +211,14 @@ QString FileDialog::getSaveFileName (QWidget * parent, const QString & caption, 
                 *selectedFilter = dlg.selectedNameFilter();
             file = dlg.selectedFiles().front();
         }
+        /*
+        dlg.selectFile(QString::fromUtf8("BOI"));
+        */
+        /*
+        QLineEdit* fileNameEdit = dlg.findChild<QLineEdit*>(QString::fromLatin1("fileNameEdit"));
+                if (fileNameEdit)
+                    fileNameEdit->setText(QString::fromUtf8("BOII"));
+        */
     }
     else {
         file = QFileDialog::getSaveFileName(parent, windowTitle, dirName, filter, selectedFilter, options);
